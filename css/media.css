@@ -1,0 +1,1447 @@
+/* =====================================================================
+   media.css — responsive styles for Tadbirkor Ayol
+   Loaded AFTER main.css, so everything here overrides the desktop design.
+
+   Breakpoints
+     > 1392px  desktop design (untouched, 1344px container)
+     ≤ 1392px  fluid layout: fixed widths/heights become flexible
+     ≤ 1240px  navbar collapses into a burger menu
+     ≤ 1180px  uzum product row becomes a swipeable strip
+     ≤ 1100px  3-col grids -> 2-col
+     ≤  992px  tablet: two-column sections stack
+     ≤  768px  large phone / small tablet
+     ≤  576px  phone
+     ≤  400px  small phone
+   ===================================================================== */
+
+/* ---------- base helpers (all sizes) ---------- */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* burger button is hidden on desktop */
+.burger {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin-left: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.burger span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--dark);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.burger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.burger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* FAQ: question text sits vertically centered next to the +/- button
+   (the opened card keeps its button aligned to the top) */
+.questions_list>div:not(.questions_card1) {
+  align-items: center;
+}
+
+.questions_list h3 {
+  margin: 0;
+}
+
+/* the app banner is just an image */
+.app_ad img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+}
+
+
+/* =====================================================================
+   ≤ 1392px — fluid layout
+   ===================================================================== */
+@media (max-width: 1392px) {
+
+  /* page gutters */
+  header {
+    padding: 8px 24px 0;
+  }
+
+  .container {
+    padding: 0 24px;
+  }
+
+  /* navbar: tighten spacing so it still fits */
+  .logo {
+    margin-right: 24px;
+  }
+
+  .nav-links {
+    gap: 0;
+    margin-right: 16px;
+    min-width: 0;
+  }
+
+  .nav-link {
+    padding: 8px 9px;
+    gap: 5px;
+  }
+
+  /* ---- hero ---- */
+  .hero_section {
+    height: auto;
+    padding: 72px clamp(16px, 12vw, 265px) 0;
+    gap: 40px;
+    background: var(--background-2);
+    overflow: hidden;
+  }
+
+  /* laptop picture becomes a proportional block at the bottom */
+  .hero_section::after {
+    content: "";
+    display: block;
+    flex-shrink: 0;
+    align-self: center;
+    width: 100%;
+    max-width: 1257px;
+    aspect-ratio: 1257 / 501;
+    margin-top: -16px;
+    background: url(../img/Group\ 3.png) no-repeat center bottom / contain;
+  }
+
+  .hero_section h1 {
+    font-size: clamp(30px, 5vw, 67px);
+  }
+
+  .special {
+    font-size: 1.075em;
+  }
+
+  .hero_button {
+    margin: 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: auto;
+    min-width: 212px;
+    padding: 0 24px;
+  }
+
+  /* ---- courses ---- */
+  .cources {
+    padding: 64px 40px;
+    gap: 40px;
+  }
+
+  .cources_text {
+    width: 320px;
+    flex: 0 0 auto;
+    height: auto;
+    gap: 32px;
+  }
+
+  .cources_grid {
+    flex: 1;
+    min-width: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card2 {
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+  }
+
+  .card_text {
+    width: 100%;
+    max-width: 475px;
+    height: auto;
+  }
+
+  .card3 {
+    gap: 24px;
+  }
+
+  /* ---- finance ---- */
+  .finance {
+    padding: 64px 40px;
+  }
+
+  .finance_text h2 {
+    width: auto;
+    max-width: 531px;
+  }
+
+  .banner,
+  .finance_card2 {
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto;
+    height: 400px;
+    padding: 40px;
+  }
+
+  .banner__art {
+    width: min(520px, 84%);
+  }
+
+  /* ---- assist ---- */
+  .assist {
+    width: 100%;
+    height: auto;
+    padding: 64px 40px;
+    gap: 32px;
+  }
+
+  .call_center {
+    flex: 1 1 auto;
+    width: auto;
+    min-width: 0;
+    gap: 32px;
+  }
+
+  .call_center__info {
+    flex-wrap: wrap;
+  }
+
+  .info_cards {
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto;
+    height: auto;
+    min-height: 169px;
+    gap: 24px;
+  }
+
+  .info_content {
+    width: auto;
+    height: auto;
+  }
+
+  .call_center__info h3 {
+    width: auto;
+    overflow-wrap: break-word;
+  }
+
+  .assist_image {
+    flex: 0 0 40%;
+    width: auto;
+    min-height: 460px;
+    padding: 20px;
+    background-size: cover;
+    background-position: center top;
+  }
+
+  /* ---- vacancies ---- */
+  .vacancies {
+    padding: 64px 40px;
+  }
+
+  .vacancies__cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-rows: auto;
+  }
+
+  .vacancies__card {
+    width: 100%;
+    height: auto;
+    min-width: 0;
+  }
+
+  .card_content,
+  .card_content2,
+  .salary {
+    width: 100%;
+  }
+
+  .card_content {
+    height: auto;
+    min-height: 28px;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .card_content>img,
+  .card_content>span>svg {
+    flex-shrink: 0;
+  }
+
+  .card_content>span:first-of-type {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .card_content>span:first-of-type p {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .data {
+    flex-shrink: 0;
+  }
+
+  .card_content2 {
+    height: auto;
+    gap: 16px;
+  }
+
+  .card_content2 div {
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+
+  .vacancies__card hr {
+    width: 100%;
+  }
+
+  .salary {
+    height: auto;
+    min-height: 46px;
+    align-items: center;
+    gap: 8px;
+    text-align: left;
+  }
+
+  .salary span {
+    font-size: 15px;
+  }
+
+  .salary svg {
+    flex-shrink: 0;
+  }
+
+  /* ---- uzum ---- */
+  .uzum {
+    --pad: 40px;
+    padding: 64px var(--pad);
+  }
+
+  .uzum__content p {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  /* ---- reja ---- */
+  .reja {
+    --pad: 40px;
+    width: 100%;
+    height: auto;
+    padding: 64px var(--pad);
+  }
+
+  .reja_cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .reja_card {
+    width: 100%;
+    height: auto;
+    min-width: 0;
+  }
+
+  .reja_card img {
+    width: 100%;
+    height: auto;
+  }
+
+  .reja_card_content {
+    flex: 1;
+    height: auto !important;
+    /* the 4th card has an inline height */
+  }
+
+  .reja_card_btn {
+    width: 100%;
+    margin-top: auto;
+    padding: 8px 16px;
+    justify-content: center;
+  }
+
+  .reja_main_btn,
+  .qarorlar_heading button,
+  .finance_text button,
+  .vacancies_btn {
+    white-space: nowrap;
+  }
+
+  /* ---- invest ---- */
+  .invest {
+    width: 100%;
+    height: auto;
+    padding: 64px 40px;
+    gap: 56px;
+    margin: 64px 0;
+  }
+
+  .invest_card {
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto;
+  }
+
+  /* ---- qarorlar ---- */
+  .qarorlar {
+    width: 100%;
+    height: auto;
+    padding: 64px 40px;
+  }
+
+  .qarorlar_grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-rows: minmax(141px, auto);
+  }
+
+  .qarorlar_card {
+    gap: 16px;
+  }
+
+  /* ---- questions ---- */
+  .questions {
+    width: 100%;
+    height: auto;
+    margin: 64px 0;
+    padding: 0;
+  }
+
+  .questions_list {
+    width: 100%;
+    align-items: center;
+  }
+
+  .questions_list div,
+  .questions_card1 {
+    width: 100%;
+    max-width: 864px;
+    gap: 16px;
+  }
+
+  .questions_card1 {
+    height: auto;
+  }
+
+  .questions_card1>span {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .questions_list button {
+    flex-shrink: 0;
+  }
+
+  /* ---- footer ---- */
+  .footer {
+    height: auto;
+    padding: 64px 40px;
+    gap: 40px;
+  }
+
+  .footer_content {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    height: auto;
+    gap: 32px;
+  }
+
+  .footer_grid {
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto;
+    height: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+  }
+
+  .footer_card,
+  .footer_card1 {
+    width: 100%;
+    height: auto;
+    min-height: 114px;
+    gap: 16px;
+  }
+
+  .footer_floor,
+  footer hr {
+    width: 100%;
+  }
+
+  .footer_floor {
+    flex-wrap: wrap;
+    gap: 8px 24px;
+  }
+}
+
+
+/* =====================================================================
+   ≤ 1240px — burger navigation
+   ===================================================================== */
+@media (max-width: 1240px) {
+  .burger {
+    display: flex;
+  }
+
+  .logo {
+    margin-right: auto;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    z-index: 30;
+    height: auto;
+    margin: 0;
+    padding: 8px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  }
+
+  .nav-links.open {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+}
+
+
+/* =====================================================================
+   ≤ 1180px — uzum: swipeable product strip
+   ===================================================================== */
+@media (max-width: 1180px) {
+  .info_cards {
+    flex: 1 1 200px;
+    min-height: 140px;
+  }
+
+  .uzum_list {
+    margin: 0 calc(var(--pad, 40px) * -1);
+    padding: 0 var(--pad, 40px) 8px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .uzum_list::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* auto-margin spacers: centred when it fits, start-aligned when it scrolls */
+  .uzum_list::before,
+  .uzum_list::after {
+    content: "";
+    flex: 0 0 0;
+    margin: auto;
+  }
+
+  .uzum_list>* {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+  }
+}
+
+/* uzum cards: image + label always centered inside the card, at every size */
+.uzum_card,
+.uzum_card1,
+.uzum_card2 {
+  align-items: center;
+}
+
+.uzum_card img,
+.uzum_card1 img,
+.uzum_card2 img {
+  margin: 0 auto;
+}
+
+.uzum_card span,
+.uzum_card1 span,
+.uzum_card2 span {
+  width: 100%;
+  align-items: center;
+}
+
+
+/* =====================================================================
+   ≤ 1100px — 3 columns -> 2 columns
+   ===================================================================== */
+@media (max-width: 1100px) {
+  .vacancies__cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* reja becomes a swipeable slider (matches the 1/8 pager) */
+  .reja_cards {
+    display: flex;
+    gap: 16px;
+    margin: 0 calc(var(--pad) * -1);
+    padding: 0 var(--pad) 8px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--pad);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .reja_cards::-webkit-scrollbar {
+    display: none;
+  }
+
+  .reja_card {
+    flex: 0 0 min(280px, 78%);
+    width: auto;
+    scroll-snap-align: start;
+  }
+
+  .cources_text {
+    width: 280px;
+  }
+
+  .banner,
+  .finance_card2 {
+    padding: 32px;
+  }
+
+  .headline,
+  .finance_card2 h2 {
+    font-size: 32px;
+  }
+}
+
+
+/* =====================================================================
+   ≤ 992px — tablet: stack two-column sections
+   ===================================================================== */
+@media (max-width: 992px) {
+
+  .cources,
+  .finance,
+  .assist,
+  .vacancies,
+  .uzum,
+  .reja,
+  .qarorlar {
+    padding: 48px 32px;
+  }
+
+  .uzum,
+  .reja {
+    --pad: 32px;
+  }
+
+  .invest {
+    padding: 48px 32px;
+    gap: 40px;
+    margin: 48px 0;
+  }
+
+  /* section headings */
+  .cources_text h2,
+  .finance_text h2,
+  .call_center__content h2,
+  .vacancies h2,
+  .uzum__content h2,
+  .reja_content h2,
+  .invest_content h2,
+  .qarorlar_content h2,
+  .questions h2 {
+    font-size: 32px;
+  }
+
+  /* hero */
+  .hero_section {
+    padding-top: 56px;
+    gap: 32px;
+  }
+
+  .hero_section p {
+    font-size: 15px;
+  }
+
+  /* courses */
+  .cources {
+    flex-direction: column;
+    margin: 48px 0;
+    gap: 32px;
+  }
+
+  .cources_text {
+    width: 100%;
+    gap: 16px;
+  }
+
+  .cources_grid {
+    flex: none;
+    width: 100%;
+    grid-template-rows: 240px auto;
+  }
+
+  .card3 {
+    min-height: 300px;
+  }
+
+  /* finance */
+  .finance_cards {
+    flex-direction: column;
+  }
+
+  .banner,
+  .finance_card2 {
+    flex: none;
+    width: 100%;
+    height: auto;
+    min-height: 380px;
+  }
+
+  .finance_card2 h2 {
+    max-width: 62%;
+  }
+
+  /* assist */
+  .assist {
+    flex-direction: column;
+    margin: 48px 0;
+    gap: 32px;
+  }
+
+  .call_center {
+    width: 100%;
+    flex: none;
+  }
+
+  .call_center__content {
+    height: auto;
+    gap: 12px;
+  }
+
+  .assist_image {
+    flex: none;
+    width: 100%;
+    min-height: 420px;
+  }
+
+  /* vacancies / misc */
+  .vacancies {
+    gap: 32px;
+  }
+
+  .uzum {
+    margin: 48px 0;
+    gap: 40px;
+  }
+
+  /* reja */
+  .reja {
+    gap: 32px;
+  }
+
+  .reja_heading {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .reja_content p br,
+  .invest_heading p br,
+  .qarorlar_content p br {
+    display: none;
+  }
+
+  .reja_btns {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .pagination {
+    padding: 0;
+  }
+
+  .reja_main_btn {
+    margin: 0;
+  }
+
+  /* invest */
+  .invest_content {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .invest_cards {
+    flex-direction: column;
+  }
+
+  .invest_card {
+    flex: none;
+    width: 100%;
+    height: auto;
+    min-height: 130px;
+    gap: 24px;
+  }
+
+  /* qarorlar */
+  .qarorlar {
+    gap: 32px;
+  }
+
+  .qarorlar_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .qarorlar_card1 {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  /* questions */
+  .questions {
+    margin: 48px 0;
+    gap: 32px;
+  }
+
+  /* footer */
+  .footer {
+    padding: 48px 32px;
+  }
+
+  .footer_heading {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .footer_content {
+    flex: none;
+    width: 100%;
+    gap: 24px;
+  }
+
+  .footer_grid {
+    flex: none;
+    width: 100%;
+  }
+
+  .footer_content p br {
+    display: none;
+  }
+}
+
+
+/* =====================================================================
+   ≤ 768px — large phone / small tablet
+   ===================================================================== */
+@media (max-width: 768px) {
+  header {
+    padding: 8px 16px 0;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .hero_section {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .hero_section h1 br {
+    display: none;
+  }
+
+  /* finance header stacks */
+  .finance {
+    gap: 32px;
+  }
+
+  .finance_text {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .finance_text h2 {
+    width: 100%;
+    max-width: none;
+  }
+
+  .finance_text button {
+    margin: 0;
+    align-self: flex-start;
+  }
+
+  /* qarorlar header stacks */
+  .qarorlar_heading {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .qarorlar_heading button {
+    margin: 0;
+    align-self: flex-start;
+  }
+
+  /* questions */
+  .questions_list h3 {
+    font-size: 18px;
+  }
+
+  .questions_card1 p {
+    font-size: 15px;
+  }
+
+  /* app banner: keep the text readable by cropping instead of shrinking */
+  .app_ad img {
+    height: 300px;
+    object-fit: cover;
+    object-position: left center;
+  }
+
+  .footer {
+    padding: 48px 24px;
+  }
+}
+
+
+/* =====================================================================
+   ≤ 640px — reja becomes a swipeable slider, vacancies single column
+   ===================================================================== */
+@media (max-width: 640px) {
+  .vacancies__cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* courses: one column */
+  .cources_grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    grid-auto-rows: auto;
+  }
+
+  .card1 {
+    min-height: 200px;
+    gap: 24px;
+  }
+
+  .card2 {
+    min-height: 240px;
+  }
+
+  .card3 {
+    grid-column: 1 / -1;
+    min-height: 320px;
+    padding: 32px 20px;
+  }
+
+  .card_text h3 {
+    font-size: 26px;
+  }
+
+  /* qarorlar: one column */
+  .qarorlar_grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* footer: one column */
+  .footer_grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .footer_card1 {
+    grid-column: 1 / -1;
+  }
+}
+
+
+/* =====================================================================
+   ≤ 576px — phone
+   ===================================================================== */
+@media (max-width: 576px) {
+
+  /* navbar */
+  header {
+    padding: 8px 12px 0;
+  }
+
+  .container {
+    padding: 0 12px;
+  }
+
+  .navbar {
+    height: 56px;
+    padding: 0 12px;
+  }
+
+  .logo svg {
+    width: 60px;
+    height: auto;
+  }
+
+  .right-section {
+    gap: 8px;
+  }
+
+  .user-profile {
+    padding: 3px;
+  }
+
+  .user-profile .name {
+    display: none;
+  }
+
+  .lang-selector {
+    padding: 7px 10px;
+  }
+
+  .burger {
+    width: 38px;
+    height: 38px;
+    margin-left: 8px;
+  }
+
+  .nav-links.open {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* spacing + type scale */
+  .cources,
+  .finance,
+  .assist,
+  .vacancies,
+  .uzum,
+  .reja,
+  .qarorlar,
+  .invest {
+    padding: 40px 20px;
+  }
+
+  .cources,
+  .uzum,
+  .invest,
+  .assist,
+  .questions {
+    margin: 40px 0;
+  }
+
+  .uzum {
+    --pad: 20px;
+    gap: 32px;
+  }
+
+  .reja {
+    --pad: 20px;
+  }
+
+  .cources_text h2,
+  .finance_text h2,
+  .call_center__content h2,
+  .vacancies h2,
+  .uzum__content h2,
+  .reja_content h2,
+  .invest_content h2,
+  .qarorlar_content h2,
+  .questions h2 {
+    font-size: 28px;
+  }
+
+  /* hero */
+  .hero_section {
+    padding: 40px 16px 0;
+    gap: 28px;
+    border-radius: 20px;
+  }
+
+  .hero_section h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
+
+  .hero_section p {
+    font-size: 14px;
+  }
+
+  .hero_button {
+    min-width: 0;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  /* laptop image a bit bigger than the screen so it stays legible */
+  .hero_section::after {
+    width: 150%;
+    max-width: none;
+    align-self: center;
+    margin-top: -8px;
+  }
+
+  /* finance cards */
+  .banner,
+  .finance_card2 {
+    padding: 24px;
+    min-height: 360px;
+    border-radius: 20px;
+  }
+
+  .headline,
+  .finance_card2 h2 {
+    font-size: 26px;
+  }
+
+  .banner__art {
+    width: 62%;
+  }
+
+  .subtext {
+    max-width: 52%;
+  }
+
+  .finance_card2 {
+    background-size: 46% auto;
+    background-position: right bottom;
+  }
+
+  .finance_card2 p {
+    width: 52%;
+  }
+
+  .subtext br,
+  .finance_card2 p br {
+    display: none;
+  }
+
+  .finance_card2 svg {
+    max-width: 140px;
+    height: auto;
+  }
+
+  /* assist */
+  .call_center__btn {
+    width: 100%;
+  }
+
+  .call_center__info {
+    flex-direction: column;
+  }
+
+  .info_cards {
+    flex: none;
+    width: 100%;
+    min-height: 0;
+    gap: 12px;
+  }
+
+  .assist_image {
+    min-height: 360px;
+  }
+
+  /* vacancies */
+  .vacancies_btn {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .salary {
+    padding: 12px;
+  }
+
+  .salary span {
+    font-size: 14px;
+    min-width: 0;
+  }
+
+  /* uzum */
+  .uzum__btn {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  /* reja header */
+  .reja_main_btn {
+    width: auto;
+    padding: 12px 20px;
+    height: 46px;
+  }
+
+  /* invest */
+  .invest_card {
+    padding: 16px;
+  }
+
+  /* questions */
+  .questions_list div,
+  .questions_card1 {
+    padding: 14px 16px;
+  }
+
+  .questions_list h3 {
+    font-size: 16px;
+  }
+
+  .questions_card1 p {
+    font-size: 14px;
+  }
+
+  /* footer */
+  .footer {
+    padding: 40px 20px;
+  }
+
+  .footer h4 {
+    font-size: 16px;
+    overflow-wrap: anywhere;
+  }
+
+  .footer_floor {
+    flex-direction: column;
+  }
+
+  .footer_logos svg {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+
+/* =====================================================================
+   ≤ 480px
+   ===================================================================== */
+@media (max-width: 480px) {
+  .lang-selector #langLabel {
+    display: none;
+  }
+
+  .app_ad img {
+    height: 250px;
+    border-radius: 20px;
+  }
+
+  .reja_btns {
+    gap: 12px;
+  }
+
+  .call_center__info h3 {
+    font-size: 16px;
+  }
+}
+
+
+/* =====================================================================
+   ≤ 400px — small phones
+   ===================================================================== */
+@media (max-width: 400px) {
+
+  .cources,
+  .finance,
+  .assist,
+  .vacancies,
+  .uzum,
+  .reja,
+  .qarorlar,
+  .invest {
+    padding: 32px 16px;
+  }
+
+  .uzum,
+  .reja {
+    --pad: 16px;
+  }
+
+  .cources_text h2,
+  .finance_text h2,
+  .call_center__content h2,
+  .vacancies h2,
+  .uzum__content h2,
+  .reja_content h2,
+  .invest_content h2,
+  .qarorlar_content h2,
+  .questions h2 {
+    font-size: 24px;
+  }
+
+  .hero_section h1 {
+    font-size: 28px;
+  }
+
+  .headline,
+  .finance_card2 h2 {
+    font-size: 22px;
+  }
+
+  .card_text h3 {
+    font-size: 22px;
+  }
+
+  .navbar {
+    padding: 0 10px;
+  }
+
+  .pagination {
+    gap: 8px;
+  }
+
+  .reja_btns {
+    flex-wrap: wrap;
+    row-gap: 12px;
+  }
+}
+
+
+/* =====================================================================
+   Hover states — every clickable button, everywhere, every width
+   ===================================================================== */
+
+/* generic lift-and-brighten for anything shaped like a button */
+button,
+.reja_card_btn,
+.footer_logos span {
+  transition: transform 0.15s ease, filter 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+  cursor: pointer;
+}
+
+/* solid blue pill buttons: Ro'yhatdan o'tish, Dasturlarini ko'rish,
+   Barchasini ko'rish, Mahsulotlarni ko'rish (uzum), reja/qarorlar CTAs */
+.hero_button:hover,
+.finance_text button:hover,
+.vacancies_btn:hover,
+.reja_main_btn:hover,
+.qarorlar_heading button:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 6px 16px rgba(37, 105, 242, 0.35);
+  transform: translateY(-1px);
+}
+
+/* white outline pill buttons: Mutaxassis bilan bog'lanish,
+   Mahsulotlarni ko'rish (uzum), Kurslarni ko'rish */
+.call_center__btn:hover,
+.uzum__btn:hover,
+.card_btn:hover {
+  background: #f5f5f5;
+  border-color: #ccc;
+  transform: translateY(-1px);
+}
+
+/* light-blue "so'm" pills on the reja cards */
+.reja_card_btn:hover {
+  background: #e2ebfd;
+  box-shadow: 0 0 0 1px #cddffb;
+}
+
+/* round icon buttons: pager arrows, decree arrows, FAQ +/- toggle
+   (page-btn / card_data button / questions_list button share the look) */
+.page-btn:hover:not(:disabled),
+.card_data button:hover,
+.questions_list button:hover {
+  background: #f5f5f5;
+  border-color: #ccc;
+}
+
+/* footer social icons */
+.footer_logos span:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(37, 105, 242, 0.45);
+}
+
+/* burger button */
+.burger:hover {
+  background: #f5f5f5;
+  border-color: #ccc;
+}
+
+
+/* =====================================================================
+   Hover states — cards
+   ===================================================================== */
+
+/* transitions (kept separate from the base rules in main.css) */
+.card1,
+.card2,
+.card3,
+.banner,
+.finance_card2,
+.vacancies__card,
+.reja_card,
+.qarorlar_grid>div,
+.uzum_card,
+.uzum_card1,
+.uzum_card2,
+.invest_card,
+.footer_card,
+.footer_card1,
+.questions_list>div,
+.questions_card1 {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, filter 0.2s ease;
+}
+
+/* light cards on a white background: courses image tiles, finance banners */
+.card1:hover,
+.card2:hover,
+.card3:hover,
+.banner:hover,
+.finance_card2:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px 0 rgba(0, 33, 69, 0.16);
+}
+
+/* bordered white cards: vacancies, reja, qarorlar/decree cards */
+.vacancies__card:hover,
+.reja_card:hover,
+.qarorlar_grid>div:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary-blue, #2569f2);
+  box-shadow: 0 16px 32px 0 rgba(37, 105, 242, 0.14);
+}
+
+/* FAQ rows: same white bordered look, kept still (no lift, they sit in a list) */
+.questions_list>div:hover,
+.questions_card1:hover {
+  border-color: var(--primary-blue, #2569f2);
+  box-shadow: 0 12px 32px 0 rgba(37, 105, 242, 0.12);
+}
+
+/* translucent cards on dark sections: uzum products, invest, footer */
+.uzum_card:hover,
+.uzum_card1:hover,
+.uzum_card2:hover,
+.invest_card:hover,
+.footer_card:hover,
+.footer_card1:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateY(-3px);
+}

@@ -1,0 +1,23 @@
+:root {
+    --primary-blue: #2569f2;
+    --blue-light: #5584f8;
+    --white: #fff;
+    --background: #f0f1f3;
+    --dark: #121116;
+    --secondary-font: #9e9ea0;
+    --dark-2: #4f5356;
+    --error-color: #ea4335;
+    --disabled-background: #edeff3;
+    --stroke: #e5e5e5;
+    --background-2: #f9f9f9;
+    --warn: #ff9500;
+    --light-blue: #eef3fe;
+    --success: #00a73d;
+    --light-green: #ebf8f0;
+}
+
+:root {
+    --font-family: "Manrope", sans-serif;
+    --second-family: "TT Hoves Pro Trial", sans-serif;
+    --third-family: "Golos Text", sans-serif;
+}
